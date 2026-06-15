@@ -1,0 +1,130 @@
+[2026-06-10T07:01:26.151Z] [INFO] Logger initialized | Data: {"path":"c:\\Users\\kingm\\Desktop\\uuyt\\logs\\debug.log","reinit":true}
+[2026-06-10T07:01:26.163Z] [INFO] IGCSE Pseudocode extension activation started | Data: {"isWeb":false,"contextPath":"c:\\Users\\kingm\\.vscode\\extensions\\igcse0478a-level9618toolkit.igcse-0478-and-a-level-9618-toolkit-2.0.2","workspaceRoot":"c:\\Users\\kingm\\Desktop\\uuyt","openTerminals":[]}
+[2026-06-10T07:01:26.251Z] [INFO] [LicenseManager] No stored credentials — first run
+[2026-06-10T07:01:41.545Z] [INFO] IGCSE Pseudocode extension activation completed
+[2026-06-10T07:24:40.711Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{"name":"TypeError","message":"Failed to fetch"},"promise":{}}
+[2026-06-10T07:24:40.715Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"TypeError","message":"Failed to fetch"},"promise":{}}
+[2026-06-10T07:41:56.344Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{},"promise":{}}
+[2026-06-10T07:41:56.439Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{},"promise":{}}
+[2026-06-10T07:41:56.440Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.441Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.443Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.443Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.445Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.451Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.453Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.454Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.455Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.457Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.462Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.463Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.466Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.467Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.468Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.469Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.470Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.471Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.472Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.473Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.474Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.476Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.477Z] [ERROR] [CLI 8808] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:41:56.478Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T07:43:16.025Z] [INFO] Logger initialized | Data: {"path":"c:\\Users\\kingm\\Desktop\\uuyt\\logs\\debug.log","reinit":true}
+[2026-06-10T07:43:16.033Z] [INFO] IGCSE Pseudocode extension activation started | Data: {"isWeb":false,"contextPath":"c:\\Users\\kingm\\.vscode\\extensions\\igcse0478a-level9618toolkit.igcse-0478-and-a-level-9618-toolkit-2.0.2","workspaceRoot":"c:\\Users\\kingm\\Desktop\\uuyt","openTerminals":[]}
+[2026-06-10T07:43:24.346Z] [DEBUG] [LicenseManager] No stored credentials but user previously skipped — not auto-opening
+[2026-06-10T07:43:40.361Z] [INFO] IGCSE Pseudocode extension activation completed
+[2026-06-10T07:44:46.660Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{},"promise":{}}
+[2026-06-10T07:44:46.744Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{},"promise":{}}
+[2026-06-10T08:24:45.805Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{},"promise":{}}
+[2026-06-10T08:24:45.879Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{},"promise":{}}
+[2026-06-10T08:24:45.881Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.882Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.884Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.885Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.887Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.888Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.890Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.891Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.892Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.893Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.896Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.897Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.899Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.900Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.901Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.902Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.904Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.905Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.907Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.908Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.910Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.911Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.912Z] [ERROR] [CLI 9128] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-10T08:24:45.914Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T06:58:42.721Z] [INFO] Logger initialized | Data: {"path":"c:\\Users\\kingm\\Desktop\\uuyt\\logs\\debug.log","reinit":true}
+[2026-06-14T06:58:42.734Z] [INFO] IGCSE Pseudocode extension activation started | Data: {"isWeb":false,"contextPath":"c:\\Users\\kingm\\.vscode\\extensions\\igcse0478a-level9618toolkit.igcse-0478-and-a-level-9618-toolkit-2.0.2","workspaceRoot":"c:\\Users\\kingm\\Desktop\\uuyt","openTerminals":[{"name":"blackbox","state":{"isInteractedWith":true,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":false,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":false,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":false,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":false,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":false,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":false}},{"name":"blackbox","state":{"isInteractedWith":false,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":false}},{"name":"blackbox","state":{"isInteractedWith":true,"shell":"pwsh"}}]}
+[2026-06-14T06:58:45.677Z] [DEBUG] [LicenseManager] No stored credentials but user previously skipped — not auto-opening
+[2026-06-14T06:58:58.598Z] [INFO] IGCSE Pseudocode extension activation completed
+[2026-06-14T09:59:27.217Z] [ERROR] [CLI 9888] Unhandled Rejection | Data: {"reason":{},"promise":{}}
+[2026-06-14T09:59:27.347Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{},"promise":{}}
+[2026-06-14T09:59:27.366Z] [ERROR] [CLI 9888] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.367Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.372Z] [ERROR] [CLI 9888] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.374Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.378Z] [ERROR] [CLI 9888] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.379Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.383Z] [ERROR] [CLI 9888] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.384Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.388Z] [ERROR] [CLI 9888] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.389Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.399Z] [ERROR] [CLI 9888] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.400Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.407Z] [ERROR] [CLI 9888] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.408Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.411Z] [ERROR] [CLI 9888] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.412Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.418Z] [ERROR] [CLI 9888] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.419Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.422Z] [ERROR] [CLI 9888] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.443Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.447Z] [ERROR] [CLI 9888] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.448Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.452Z] [ERROR] [CLI 9888] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-14T09:59:27.461Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T06:52:59.512Z] [INFO] Logger initialized | Data: {"path":"c:\\Users\\kingm\\Desktop\\uuyt\\logs\\debug.log","reinit":true}
+[2026-06-15T06:52:59.576Z] [INFO] IGCSE Pseudocode extension activation started | Data: {"isWeb":false,"contextPath":"c:\\Users\\kingm\\.vscode\\extensions\\igcse0478a-level9618toolkit.igcse-0478-and-a-level-9618-toolkit-2.0.2","workspaceRoot":"c:\\Users\\kingm\\Desktop\\uuyt","openTerminals":[{"name":"blackbox","state":{"isInteractedWith":true,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":true,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":true,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":true,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":true,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":true,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":true,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":true,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":true,"shell":"pwsh"}},{"name":"blackbox","state":{"isInteractedWith":true,"shell":"pwsh"}}]}
+[2026-06-15T06:53:05.653Z] [DEBUG] [LicenseManager] No stored credentials but user previously skipped — not auto-opening
+[2026-06-15T06:53:16.151Z] [INFO] IGCSE Pseudocode extension activation completed
+[2026-06-15T06:53:19.852Z] [ERROR] [CLI 8640] Unhandled Rejection | Data: {"reason":{"fetcherId":"electron-fetch"},"promise":{}}
+[2026-06-15T06:53:19.856Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"fetcherId":"electron-fetch"},"promise":{}}
+[2026-06-15T06:53:19.873Z] [ERROR] [CLI 8640] Unhandled Rejection | Data: {"reason":{"fetcherId":"electron-fetch"},"promise":{}}
+[2026-06-15T06:53:19.875Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"fetcherId":"electron-fetch"},"promise":{}}
+[2026-06-15T07:36:38.879Z] [INFO] Logger initialized | Data: {"path":"c:\\Users\\kingm\\Desktop\\EAC\\logs\\debug.log","reinit":true}
+[2026-06-15T07:36:38.894Z] [INFO] IGCSE Pseudocode extension activation started | Data: {"isWeb":false,"contextPath":"c:\\Users\\kingm\\.vscode\\extensions\\igcse0478a-level9618toolkit.igcse-0478-and-a-level-9618-toolkit-2.0.2","workspaceRoot":"c:\\Users\\kingm\\Desktop\\EAC","openTerminals":[]}
+[2026-06-15T07:36:45.453Z] [DEBUG] [LicenseManager] No stored credentials but user previously skipped — not auto-opening
+[2026-06-15T07:37:18.877Z] [INFO] IGCSE Pseudocode extension activation completed
+[2026-06-15T07:37:27.211Z] [ERROR] [CLI 9976] Unhandled Rejection | Data: {"reason":{},"promise":{}}
+[2026-06-15T07:37:27.212Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{},"promise":{}}
+[2026-06-15T07:37:27.213Z] [ERROR] [CLI 9976] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.214Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.248Z] [ERROR] [CLI 9976] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.251Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.252Z] [ERROR] [CLI 9976] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.254Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.255Z] [ERROR] [CLI 9976] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.261Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.262Z] [ERROR] [CLI 9976] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.263Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.264Z] [ERROR] [CLI 9976] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.265Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.266Z] [ERROR] [CLI 9976] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.267Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.268Z] [ERROR] [CLI 9976] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.268Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.270Z] [ERROR] [CLI 9976] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.271Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.272Z] [ERROR] [CLI 9976] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.277Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.278Z] [ERROR] [CLI 9976] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}
+[2026-06-15T07:37:27.279Z] [ERROR] [Extension Host] Unhandled Rejection | Data: {"reason":{"name":"Canceled"},"promise":{}}

@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EACPay — Blockchain Cross-Border Payments for East Africa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --emerald: #1B4332;
+    --emerald-mid: #2D6A4F;
+    --emerald-light: #40916C;
+    --emerald-pale: #95D5B2;
+    --gold: #D4A017;
+    --gold-light: #F2C94C;
+    --sunset: #E76F51;
+    --cream: #FAF7F0;
+    --ink: #0D1F17;
+    --mist: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--ink);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1.2rem 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(13, 31, 23, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 0.6rem;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--emerald-light), var(--gold));
+    border-radius: 8px;
+    display: grid; place-items: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 700; font-size: 1rem; color: #fff;
+  }
+  .logo-text {
+    font-family: 'Fraunces', serif;
+    font-weight: 700; font-size: 1.3rem; color: var(--cream);
+    letter-spacing: -0.02em;
+  }
+  .logo-text span { color: var(--gold); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: rgba(250,247,240,0.7);
+    font-size: 0.9rem; font-weight: 400; letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cream); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--ink) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 5% 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* African geometric pattern background */
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(27,67,50,0.6) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(212,160,23,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 10%, rgba(231,111,81,0.08) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+    position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; width: 100%;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .eyebrow-dot {
+    width: 6px; height: 6px; background: var(--gold); border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900; line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title .accent { color: var(--gold); font-style: italic; }
+  .hero-title .green { color: var(--emerald-pale); }
+
+  .hero-desc {
+    font-size: 1.05rem; line-height: 1.75;
+    color: rgba(250,247,240,0.65); max-width: 500px;
+    margin-bottom: 2.5rem; font-weight: 300;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(212,160,23,0.3); }
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--cream);
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    font-weight: 400; font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.3); background: var(--mist); }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item {}
+  .stat-val {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem; font-weight: 700; color: var(--cream);
+    display: block; line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem; color: rgba(250,247,240,0.45);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* SVG MAP */
+  .hero-visual {
+    position: relative; display: flex; justify-content: center; align-items: center;
+  }
+  .map-container {
+    position: relative; width: 100%; max-width: 480px;
+  }
+  .map-glow {
+    position: absolute; inset: -30px;
+    background: radial-gradient(ellipse at center, rgba(64,145,108,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+  @keyframes glow-pulse {
+    0%,100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+
+  .africa-map {
+    width: 100%; height: auto; position: relative; z-index: 1;
+  }
+  .africa-map path { transition: fill 0.3s; }
+
+  /* Floating cards */
+  .float-card {
+    position: absolute;
+    background: rgba(13,31,23,0.9);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    z-index: 2;
+    animation: float-y 6s ease-in-out infinite;
+  }
+  .float-card:nth-child(2) { animation-delay: -2s; }
+  .float-card:nth-child(3) { animation-delay: -4s; }
+  @keyframes float-y {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .fc-top { top: 5%; right: -5%; }
+  .fc-mid { top: 45%; left: -8%; }
+  .fc-bot { bottom: 8%; right: 0%; }
+  .fc-label { color: rgba(250,247,240,0.5); font-size: 0.7rem; margin-bottom: 0.2rem; }
+  .fc-val { color: var(--cream); font-weight: 600; font-size: 0.9rem; }
+  .fc-badge {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    font-size: 0.7rem; color: var(--emerald-pale);
+    margin-top: 0.15rem;
+  }
+  .fc-badge::before { content: '▲'; font-size: 0.6rem; }
+
+  /* ─── FX TICKER ─── */
+  #ticker {
+    background: var(--emerald);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0.75rem 0;
+    overflow: hidden;
+    position: relative; z-index: 2;
+  }
+  .ticker-track {
+    display: flex; gap: 3rem;
+    white-space: nowrap;
+    animation: scroll-left 30s linear infinite;
+    width: max-content;
+  }
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.82rem; font-weight: 500;
+  }
+  .ticker-pair { color: rgba(250,247,240,0.5); font-size: 0.72rem; }
+  .ticker-rate { color: var(--cream); }
+  .ticker-change.up { color: #52c41a; }
+  .ticker-change.dn { color: var(--sunset); }
+  .ticker-sep { color: rgba(255,255,255,0.15); }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 7rem 5%; position: relative; z-index: 1; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem; display: block;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700; line-height: 1.1;
+    letter-spacing: -0.02em; color: var(--cream);
+    margin-bottom: 1.2rem;
+  }
+  .section-sub {
+    font-size: 1rem; color: rgba(250,247,240,0.55);
+    line-height: 1.7; max-width: 560px; font-weight: 300;
+  }
+
+  /* ─── FEATURES ─── */
+  #features { background: rgba(255,255,255,0.015); }
+  .features-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: end; margin-bottom: 4rem;
+  }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+  }
+  .feat-card {
+    background: var(--ink);
+    padding: 2.2rem;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .feat-card:hover { background: rgba(27,67,50,0.4); }
+  .feat-icon {
+    width: 44px; height: 44px;
+    background: rgba(64,145,108,0.15);
+    border: 1px solid rgba(64,145,108,0.3);
+    border-radius: 10px;
+    display: grid; place-items: center;
+    font-size: 1.2rem; margin-bottom: 1.4rem;
+  }
+  .feat-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--cream); margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+  .feat-desc {
+    font-size: 0.86rem; line-height: 1.65;
+    color: rgba(250,247,240,0.5);
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  #how {
+    background: linear-gradient(180deg, var(--ink) 0%, rgba(27,67,50,0.2) 50%, var(--ink) 100%);
+  }
+  .how-header { text-align: center; margin-bottom: 4.5rem; }
+  .how-header .section-sub { margin: 0 auto; }
+  .steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute; top: 2rem; left: 12.5%; right: 12.5%;
+    height: 1px; background: linear-gradient(90deg, transparent, var(--emerald-light), var(--gold), var(--emerald-light), transparent);
+  }
+  .step {
+    text-align: center; padding: 0 1.5rem;
+    position: relative;
+  }
+  .step-num {
+    width: 64px; height: 64px; border-radius: 50%;
+    display: grid; place-items: center; margin: 0 auto 1.5rem;
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem; font-weight: 700;
+    position: relative; z-index: 1;
+    transition: transform 0.3s;
+  }
+  .step:hover .step-num { transform: scale(1.1); }
+  .step-num.s1 { background: var(--emerald); border: 2px solid var(--emerald-light); color: var(--emerald-pale); }
+  .step-num.s2 { background: rgba(212,160,23,0.15); border: 2px solid var(--gold); color: var(--gold); }
+  .step-num.s3 { background: rgba(231,111,81,0.15); border: 2px solid var(--sunset); color: var(--sunset); }
+  .step-num.s4 { background: rgba(149,213,178,0.12); border: 2px solid var(--emerald-pale); color: var(--emerald-pale); }
+  .step-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--cream); margin-bottom: 0.6rem;
+  }
+  .step-desc { font-size: 0.84rem; color: rgba(250,247,240,0.5); line-height: 1.6; }
+
+  /* ─── COUNTRIES ─── */
+  #countries {}
+  .countries-layout {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 4rem; align-items: start;
+  }
+  .country-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .country-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.2rem 1.4rem;
+    display: flex; align-items: center; gap: 1rem;
+    transition: all 0.25s; cursor: default;
+  }
+  .country-card:hover {
+    border-color: rgba(64,145,108,0.4);
+    background: rgba(27,67,50,0.3);
+    transform: translateY(-2px);
+  }
+  .country-flag { font-size: 1.7rem; }
+  .country-name { font-weight: 500; font-size: 0.9rem; color: var(--cream); }
+  .country-currency { font-size: 0.75rem; color: rgba(250,247,240,0.4); margin-top: 0.1rem; }
+
+  /* Rate table */
+  .rate-panel {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+  }
+  .rate-panel-head {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .rate-panel-title { font-size: 0.82rem; color: rgba(250,247,240,0.5); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; }
+  .live-badge {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.72rem; color: var(--emerald-pale);
+  }
+  .live-dot {
+    width: 6px; height: 6px; background: var(--emerald-pale); border-radius: 50%;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+  .rate-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.2s;
+  }
+  .rate-row:hover { background: rgba(255,255,255,0.03); }
+  .rate-row:last-child { border-bottom: none; }
+  .rate-pair { font-size: 0.85rem; color: var(--cream); font-weight: 500; }
+  .rate-val { font-size: 0.85rem; font-family: 'Fraunces', serif; color: var(--gold); }
+  .rate-chg { font-size: 0.75rem; }
+  .rate-chg.pos { color: #52c41a; }
+  .rate-chg.neg { color: var(--sunset); }
+
+  /* ─── BLOCKCHAIN ─── */
+  #blockchain {
+    background: var(--emerald);
+    position: relative; overflow: hidden;
+  }
+  #blockchain::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(212,160,23,0.12) 0%, transparent 70%);
+  }
+  .blockchain-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .block-chain-visual {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .block-item {
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px; padding: 1.2rem 1.5rem;
+    position: relative;
+    transition: all 0.3s; cursor: default;
+    margin-bottom: -1px;
+  }
+  .block-item:not(:last-child)::after {
+    content: '↓';
+    position: absolute; bottom: -18px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem; color: var(--gold); z-index: 1;
+  }
+  .block-item:hover { background: rgba(0,0,0,0.4); border-color: rgba(212,160,23,0.3); z-index: 1; }
+  .block-hash { font-size: 0.68rem; font-family: monospace; color: var(--gold); margin-bottom: 0.4rem; opacity: 0.8; }
+  .block-info { display: flex; justify-content: space-between; align-items: center; }
+  .block-tx { font-size: 0.82rem; color: var(--cream); font-weight: 500; }
+  .block-status {
+    font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 20px;
+    font-weight: 600;
+  }
+  .bs-confirmed { background: rgba(82,196,26,0.2); color: #52c41a; }
+  .bs-pending { background: rgba(212,160,23,0.2); color: var(--gold); }
+  .block-meta { font-size: 0.72rem; color: rgba(250,247,240,0.4); margin-top: 0.3rem; }
+
+  .contracts-list { margin-top: 2rem; }
+  .contract-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.2rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .contract-item:last-child { border-bottom: none; }
+  .contract-icon {
+    width: 36px; height: 36px; background: rgba(212,160,23,0.15);
+    border: 1px solid rgba(212,160,23,0.3); border-radius: 8px;
+    display: grid; place-items: center; flex-shrink: 0; font-size: 1rem;
+  }
+  .contract-name { font-weight: 600; font-size: 0.9rem; color: var(--cream); margin-bottom: 0.2rem; }
+  .contract-desc { font-size: 0.8rem; color: rgba(250,247,240,0.5); line-height: 1.5; }
+
+  /* ─── BANKS ─── */
+  #banks {}
+  .banks-header { text-align: center; margin-bottom: 3.5rem; }
+  .banks-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem;
+  }
+  .bank-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.4rem 1rem; text-align: center;
+    transition: all 0.25s; cursor: default;
+  }
+  .bank-card:hover {
+    border-color: rgba(64,145,108,0.4);
+    background: rgba(27,67,50,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  }
+  .bank-logo-area {
+    width: 48px; height: 48px; border-radius: 10px;
+    display: grid; place-items: center; margin: 0 auto 0.8rem;
+    font-family: 'Fraunces', serif; font-weight: 700; font-size: 0.9rem;
+    color: #fff;
+  }
+  .bank-name { font-size: 0.78rem; font-weight: 500; color: var(--cream); line-height: 1.3; }
+  .bank-country { font-size: 0.68rem; color: rgba(250,247,240,0.35); margin-top: 0.2rem; }
+  .swift { font-size: 0.62rem; font-family: monospace; color: rgba(212,160,23,0.6); margin-top: 0.3rem; }
+
+  /* ─── SECURITY ─── */
+  #security {
+    background: linear-gradient(135deg, rgba(27,67,50,0.3) 0%, rgba(13,31,23,0.9) 100%);
+  }
+  .security-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;
+  }
+  .sec-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border); border-radius: 14px;
+    padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: all 0.3s;
+  }
+  .sec-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--emerald-light), var(--gold));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .sec-card:hover::before { opacity: 1; }
+  .sec-card:hover { background: rgba(27,67,50,0.3); transform: translateY(-4px); }
+  .sec-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .sec-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--cream); margin-bottom: 0.5rem; }
+  .sec-desc { font-size: 0.83rem; color: rgba(250,247,240,0.5); line-height: 1.6; }
+
+  /* ─── CTA ─── */
+  #cta {
+    text-align: center;
+    background: var(--emerald);
+    position: relative; overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 50% 100%, rgba(212,160,23,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 20%, rgba(231,111,81,0.07) 0%, transparent 60%);
+  }
+  .cta-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+  .cta-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900; line-height: 1.05;
+    letter-spacing: -0.03em; color: var(--cream);
+    margin-bottom: 1.2rem;
+  }
+  .cta-sub { font-size: 1rem; color: rgba(250,247,240,0.6); margin-bottom: 2.5rem; font-weight: 300; line-height: 1.7; }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: rgba(0,0,0,0.4); border-top: 1px solid var(--border);
+    padding: 3.5rem 5% 2rem;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-brand p {
+    font-size: 0.85rem; color: rgba(250,247,240,0.45); line-height: 1.65; margin-top: 1rem; max-width: 260px;
+  }
+  .footer-col h4 {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(250,247,240,0.4); margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.65rem; }
+  .footer-col a {
+    font-size: 0.85rem; color: rgba(250,247,240,0.55);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--cream); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 2rem; border-top: 1px solid var(--border);
+    font-size: 0.78rem; color: rgba(250,247,240,0.3);
+  }
+  .footer-bottom-links { display: flex; gap: 1.5rem; }
+  .footer-bottom-links a { color: rgba(250,247,240,0.3); text-decoration: none; }
+  .footer-bottom-links a:hover { color: rgba(250,247,240,0.6); }
+
+  /* ─── ANIMATIONS ─── */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .banks-grid { grid-template-columns: repeat(3, 1fr); }
+    .steps { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+    .steps::before { display: none; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav .nav-links { display: none; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .features-header { grid-template-columns: 1fr; }
+    .blockchain-grid { grid-template-columns: 1fr; }
+    .countries-layout { grid-template-columns: 1fr; }
+    .security-grid { grid-template-columns: 1fr; }
+    .banks-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══════════════════════════════════════════════ -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-mark">E</div>
+    <span class="logo-text">EAC<span>Pay</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#countries">Countries</a></li>
+    <li><a href="#blockchain">Blockchain</a></li>
+    <li><a href="#banks">Partner Banks</a></li>
+    <li><a href="#cta" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal">
+        <span class="eyebrow-dot"></span>
+        East African Community · Blockchain Payments
+      </div>
+      <h1 class="hero-title reveal reveal-delay-1">
+        Move Money<br>Across <span class="accent">East Africa</span><br>
+        at the <span class="green">Speed of Chain</span>
+      </h1>
+      <p class="hero-desc reveal reveal-delay-2">
+        A production-grade blockchain payment rail connecting 8 East African nations — with on-chain smart contracts, non-custodial wallets, and the familiar simplicity of M-Pesa.
+      </p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#cta" class="btn-primary">
+          <span>Start Sending</span> →
+        </a>
+        <a href="#how" class="btn-outline">
+          <span>See How It Works</span>
+        </a>
+      </div>
+      <div class="hero-stats reveal reveal-delay-4">
+        <div class="stat-item">
+          <span class="stat-val">8</span>
+          <span class="stat-label">EAC Nations</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">0.8%</span>
+          <span class="stat-label">FX Spread</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">&lt;3s</span>
+          <span class="stat-label">Chain Confirm</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">10+</span>
+          <span class="stat-label">Partner Banks</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal reveal-delay-2">
+      <div class="map-container">
+        <div class="map-glow"></div>
+        <!-- SVG East Africa Simplified Map -->
+        <svg class="africa-map" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="mapGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#40916C" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#1B4332" stop-opacity="0.1"/>
+            </radialGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- Background circle glow -->
+          <circle cx="200" cy="250" r="200" fill="url(#mapGlow)" opacity="0.4"/>
+
+          <!-- Grid lines -->
+          <g opacity="0.08" stroke="#95D5B2" stroke-width="0.5">
+            <line x1="0" y1="100" x2="400" y2="100"/>
+            <line x1="0" y1="200" x2="400" y2="200"/>
+            <line x1="0" y1="300" x2="400" y2="300"/>
+            <line x1="0" y1="400" x2="400" y2="400"/>
+            <line x1="100" y1="0" x2="100" y2="500"/>
+            <line x1="200" y1="0" x2="200" y2="500"/>
+            <line x1="300" y1="0" x2="300" y2="500"/>
+          </g>
+
+          <!-- Kenya -->
+          <path d="M230 200 L290 180 L310 220 L295 270 L260 280 L230 260 L215 235 Z"
+            fill="#1B4332" stroke="#40916C" stroke-width="1.5" filter="url(#glow)">
+            <animate attributeName="fill" values="#1B4332;#2D6A4F;#1B4332" dur="4s" repeatCount="indefinite"/>
+          </path>
+          <text x="255" y="232" font-family="Outfit" font-size="9" fill="#95D5B2" text-anchor="middle" font-weight="600">KE</text>
+
+          <!-- Tanzania -->
+          <path d="M215 280 L260 280 L295 270 L300 310 L285 360 L250 380 L210 360 L195 320 Z"
+            fill="#1B4332" stroke="#40916C" stroke-width="1.5">
+            <animate attributeName="fill" values="#1B4332;#2D6A4F;#1B4332" dur="5s" begin="1s" repeatCount="indefinite"/>
+          </path>
+          <text x="247" y="325" font-family="Outfit" font-size="9" fill="#95D5B2" text-anchor="middle" font-weight="600">TZ</text>
+
+          <!-- Uganda -->
+          <path d="M185 195 L228 195 L230 200 L215 235 L185 240 L165 220 L170 200 Z"
+            fill="#1B4332" stroke="#40916C" stroke-width="1.5">
+            <animate attributeName="fill" values="#1B4332;#2D6A4F;#1B4332" dur="4.5s" begin="0.5s" repeatCount="indefinite"/>
+          </path>
+          <text x="197" y="218" font-family="Outfit" font-size="9" fill="#95D5B2" text-anchor="middle" font-weight="600">UG</text>
+
+          <!-- Rwanda -->
+          <path d="M178 248 L195 248 L195 265 L178 265 Z"
+            fill="#D4A017" stroke="#F2C94C" stroke-width="1">
+          </path>
+          <text x="186" y="260" font-family="Outfit" font-size="7" fill="#fff" text-anchor="middle" font-weight="600">RW</text>
+
+          <!-- Burundi -->
+          <path d="M178 267 L195 267 L195 284 L180 290 L172 278 Z"
+            fill="#1B4332" stroke="#40916C" stroke-width="1">
+          </path>
+          <text x="183" y="280" font-family="Outfit" font-size="6.5" fill="#95D5B2" text-anchor="middle" font-weight="600">BI</text>
+
+          <!-- South Sudan -->
+          <path d="M160 130 L230 115 L250 140 L240 175 L225 190 L185 193 L165 175 L150 155 Z"
+            fill="#1B4332" stroke="#40916C" stroke-width="1.5">
+            <animate attributeName="fill" values="#1B4332;#2D6A4F;#1B4332" dur="6s" begin="2s" repeatCount="indefinite"/>
+          </path>
+          <text x="200" y="158" font-family="Outfit" font-size="8" fill="#95D5B2" text-anchor="middle" font-weight="600">SS</text>
+
+          <!-- Somalia -->
+          <path d="M295 160 L320 140 L350 180 L345 230 L310 265 L295 270 L310 220 L290 180 Z"
+            fill="#1B4332" stroke="#40916C" stroke-width="1.5">
+            <animate attributeName="fill" values="#1B4332;#2D6A4F;#1B4332" dur="5.5s" begin="1.5s" repeatCount="indefinite"/>
+          </path>
+          <text x="318" y="212" font-family="Outfit" font-size="8" fill="#95D5B2" text-anchor="middle" font-weight="600">SO</text>
+
+          <!-- DRC -->
+          <path d="M95 200 L160 190 L165 220 L185 240 L185 248 L178 248 L172 278 L180 290 L175 330 L140 350 L100 320 L80 270 L88 230 Z"
+            fill="#1B4332" stroke="#40916C" stroke-width="1.5">
+            <animate attributeName="fill" values="#1B4332;#2D6A4F;#1B4332" dur="7s" begin="0.8s" repeatCount="indefinite"/>
+          </path>
+          <text x="135" y="278" font-family="Outfit" font-size="8.5" fill="#95D5B2" text-anchor="middle" font-weight="600">DRC</text>
+
+          <!-- Dots for capitals -->
+          <circle cx="255" cy="215" r="4" fill="#D4A017" opacity="0.9">
+            <animate attributeName="r" values="4;6;4" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="247" cy="310" r="3.5" fill="#E76F51" opacity="0.9">
+            <animate attributeName="r" values="3.5;5.5;3.5" dur="4s" begin="1s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="195" cy="215" r="3" fill="#95D5B2" opacity="0.9">
+            <animate attributeName="r" values="3;5;3" dur="3.5s" begin="0.5s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="186" cy="256" r="2.5" fill="#F2C94C" opacity="0.9">
+            <animate attributeName="r" values="2.5;4.5;2.5" dur="4.5s" begin="2s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- Connection lines (blockchain network) -->
+          <g opacity="0.3" stroke="#D4A017" stroke-width="0.8" stroke-dasharray="4 3">
+            <line x1="255" y1="215" x2="195" y2="215"><animate attributeName="stroke-dashoffset" values="0;-14" dur="2s" repeatCount="indefinite"/></line>
+            <line x1="255" y1="215" x2="247" y2="310"><animate attributeName="stroke-dashoffset" values="0;-14" dur="2.5s" repeatCount="indefinite"/></line>
+            <line x1="195" y1="215" x2="247" y2="310"><animate attributeName="stroke-dashoffset" values="0;-14" dur="3s" repeatCount="indefinite"/></line>
+            <line x1="186" y1="256" x2="195" y2="215"><animate attributeName="stroke-dashoffset" values="0;-14" dur="2.2s" repeatCount="indefinite"/></line>
+          </g>
+        </svg>
+
+        <!-- Floating info cards -->
+        <div class="float-card fc-top">
+          <div class="fc-label">KES → TZS</div>
+          <div class="fc-val">1 KSh = 22.8 TSh</div>
+          <div class="fc-badge">+0.3% today</div>
+        </div>
+        <div class="float-card fc-mid">
+          <div class="fc-label">Block #104,822</div>
+          <div class="fc-val">✓ Confirmed</div>
+        </div>
+        <div class="float-card fc-bot">
+          <div class="fc-label">Pending Transfer</div>
+          <div class="fc-val">UGX 450,000 → RWF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FX TICKER ════════════════════════════════════════════ -->
+<div id="ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <div class="ticker-item"><span class="ticker-pair">KES/TZS</span><span class="ticker-rate">22.84</span><span class="ticker-change up">▲ 0.12%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">KES/UGX</span><span class="ticker-rate">28.31</span><span class="ticker-change up">▲ 0.08%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">KES/RWF</span><span class="ticker-rate">8.94</span><span class="ticker-change dn">▼ 0.05%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">KES/BIF</span><span class="ticker-rate">19.72</span><span class="ticker-change up">▲ 0.21%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">TZS/UGX</span><span class="ticker-rate">1.24</span><span class="ticker-change dn">▼ 0.03%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">UGX/RWF</span><span class="ticker-rate">0.316</span><span class="ticker-change up">▲ 0.11%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">KES/SSP</span><span class="ticker-rate">0.562</span><span class="ticker-change up">▲ 0.09%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">KES/SOS</span><span class="ticker-rate">311.8</span><span class="ticker-change dn">▼ 0.14%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">KES/CDF</span><span class="ticker-rate">184.5</span><span class="ticker-change up">▲ 0.07%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span class="ticker-pair">KES/TZS</span><span class="ticker-rate">22.84</span><span class="ticker-change up">▲ 0.12%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">KES/UGX</span><span class="ticker-rate">28.31</span><span class="ticker-change up">▲ 0.08%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">KES/RWF</span><span class="ticker-rate">8.94</span><span class="ticker-change dn">▼ 0.05%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">KES/BIF</span><span class="ticker-rate">19.72</span><span class="ticker-change up">▲ 0.21%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">TZS/UGX</span><span class="ticker-rate">1.24</span><span class="ticker-change dn">▼ 0.03%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">UGX/RWF</span><span class="ticker-rate">0.316</span><span class="ticker-change up">▲ 0.11%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">KES/SSP</span><span class="ticker-rate">0.562</span><span class="ticker-change up">▲ 0.09%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">KES/SOS</span><span class="ticker-rate">311.8</span><span class="ticker-change dn">▼ 0.14%</span></div>
+    <div class="ticker-item"><span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><span class="ticker-pair">KES/CDF</span><span class="ticker-rate">184.5</span><span class="ticker-change up">▲ 0.07%</span></div>
+  </div>
+</div>
+
+<!-- ══ FEATURES ════════════════════════════════════════════ -->
+<section id="features">
+  <div class="section-inner">
+    <div class="features-header">
+      <div>
+        <span class="section-label reveal">Platform Features</span>
+        <h2 class="section-title reveal reveal-delay-1">A Complete DeFi Rail<br>Built for East Africa</h2>
+      </div>
+      <div>
+        <p class="section-sub reveal reveal-delay-2">EACPay combines the battle-tested simplicity of mobile money with the trust guarantees of blockchain — giving individuals and banks a single, tamper-proof payment network.</p>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card reveal">
+        <div class="feat-icon">⛓️</div>
+        <div class="feat-title">On-Chain Settlement</div>
+        <div class="feat-desc">Every transaction is recorded on Polygon PoS via our EACSettlement smart contract. Immutable, verifiable, and lightning-fast with sub-3-second finality.</div>
+      </div>
+      <div class="feat-card reveal reveal-delay-1">
+        <div class="feat-icon">👛</div>
+        <div class="feat-title">Non-Custodial Wallets</div>
+        <div class="feat-desc">Each customer gets their own smart wallet deployed on-chain. Private keys never touch our servers — generated client-side with BIP-39 mnemonics.</div>
+      </div>
+      <div class="feat-card reveal reveal-delay-2">
+        <div class="feat-icon">💱</div>
+        <div class="feat-title">Live FX Engine</div>
+        <div class="feat-desc">Rates refresh every 15 minutes from EAC market data. A transparent 0.8% spread on mid-market rates — no hidden fees, ever.</div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon">🏦</div>
+        <div class="feat-title">Multi-Bank Network</div>
+        <div class="feat-desc">10+ pre-integrated EAC correspondent banks across all 8 nations. Automatic intermediary routing when direct corridors don't exist.</div>
+      </div>
+      <div class="feat-card reveal reveal-delay-1">
+        <div class="feat-icon">🔐</div>
+        <div class="feat-title">Military-Grade Security</div>
+        <div class="feat-desc">Argon2id password hashing, AES-256-GCM key encryption, EIP-712 typed signing, and HSM-backed bank relayer keys. OWASP Top-10 compliant.</div>
+      </div>
+      <div class="feat-card reveal reveal-delay-2">
+        <div class="feat-icon">⚡</div>
+        <div class="feat-title">Real-Time Updates</div>
+        <div class="feat-desc">WebSocket push notifications for transaction confirmations, tamper alerts, and wallet balance changes — no polling required.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══════════════════════════════════════════ -->
+<section id="how">
+  <div class="section-inner">
+    <div class="how-header">
+      <span class="section-label reveal">Process</span>
+      <h2 class="section-title reveal reveal-delay-1">From Quote to Confirmation<br>in Four Steps</h2>
+      <p class="section-sub reveal reveal-delay-2">Our smart contract signing flow ensures every payment is cryptographically authorised by the sender — with full transparency at every step.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num s1">01</div>
+        <div class="step-title">Get a Quote</div>
+        <div class="step-desc">Enter the source currency, destination, and amount. Our FX engine instantly returns a live rate with full fee breakdown — no surprises.</div>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num s2">02</div>
+        <div class="step-title">Sign & Approve</div>
+        <div class="step-desc">The backend constructs an EIP-712 typed payload. You sign it locally in your browser using your private key — nothing leaves your device.</div>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num s3">03</div>
+        <div class="step-title">Broadcast to Chain</div>
+        <div class="step-desc">Our bank relayer verifies your signature and broadcasts the signed transaction to the Polygon network via the EACSettlement contract.</div>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num s4">04</div>
+        <div class="step-title">Confirmed & Delivered</div>
+        <div class="step-desc">The on-chain PaymentConfirmed event triggers a webhook, updating your dashboard in real time. Your recipient's bank is notified instantly.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COUNTRIES ════════════════════════════════════════════ -->
+<section id="countries">
+  <div class="section-inner">
+    <div class="countries-layout">
+      <div>
+        <span class="section-label reveal">Coverage</span>
+        <h2 class="section-title reveal reveal-delay-1">8 Nations,<br>8 Currencies,<br>One Network</h2>
+        <p class="section-sub reveal reveal-delay-2">The full East African Community — from Nairobi to Kinshasa — unified on a single blockchain payment rail. All corridors are supported.</p>
+        <div class="country-grid" style="margin-top: 2.5rem;">
+          <div class="country-card reveal"><span class="country-flag">🇰🇪</span><div><div class="country-name">Kenya</div><div class="country-currency">KES · Kenyan Shilling</div></div></div>
+          <div class="country-card reveal reveal-delay-1"><span class="country-flag">🇹🇿</span><div><div class="country-name">Tanzania</div><div class="country-currency">TZS · Tanzanian Shilling</div></div></div>
+          <div class="country-card reveal"><span class="country-flag">🇺🇬</span><div><div class="country-name">Uganda</div><div class="country-currency">UGX · Ugandan Shilling</div></div></div>
+          <div class="country-card reveal reveal-delay-1"><span class="country-flag">🇷🇼</span><div><div class="country-name">Rwanda</div><div class="country-currency">RWF · Rwandan Franc</div></div></div>
+          <div class="country-card reveal"><span class="country-flag">🇧🇮</span><div><div class="country-name">Burundi</div><div class="country-currency">BIF · Burundian Franc</div></div></div>
+          <div class="country-card reveal reveal-delay-1"><span class="country-flag">🇸🇸</span><div><div class="country-name">South Sudan</div><div class="country-currency">SSP · South Sudanese Pound</div></div></div>
+          <div class="country-card reveal"><span class="country-flag">🇨🇩</span><div><div class="country-name">DR Congo</div><div class="country-currency">CDF · Congolese Franc</div></div></div>
+          <div class="country-card reveal reveal-delay-1"><span class="country-flag">🇸🇴</span><div><div class="country-name">Somalia</div><div class="country-currency">SOS · Somali Shilling</div></div></div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="rate-panel">
+          <div class="rate-panel-head">
+            <span class="rate-panel-title">Live EAC Exchange Rates</span>
+            <span class="live-badge"><span class="live-dot"></span> Live · Refreshes every 15 min</span>
+          </div>
+          <div class="rate-row"><span class="rate-pair">KES / TZS</span><span class="rate-val">22.840</span><span class="rate-chg pos">▲ 0.12%</span></div>
+          <div class="rate-row"><span class="rate-pair">KES / UGX</span><span class="rate-val">28.310</span><span class="rate-chg pos">▲ 0.08%</span></div>
+          <div class="rate-row"><span class="rate-pair">KES / RWF</span><span class="rate-val">8.940</span><span class="rate-chg neg">▼ 0.05%</span></div>
+          <div class="rate-row"><span class="rate-pair">KES / BIF</span><span class="rate-val">19.720</span><span class="rate-chg pos">▲ 0.21%</span></div>
+          <div class="rate-row"><span class="rate-pair">KES / SSP</span><span class="rate-val">0.562</span><span class="rate-chg pos">▲ 0.09%</span></div>
+          <div class="rate-row"><span class="rate-pair">KES / CDF</span><span class="rate-val">184.50</span><span class="rate-chg pos">▲ 0.07%</span></div>
+          <div class="rate-row"><span class="rate-pair">KES / SOS</span><span class="rate-val">311.80</span><span class="rate-chg neg">▼ 0.14%</span></div>
+          <div class="rate-row"><span class="rate-pair">TZS / UGX</span><span class="rate-val">1.240</span><span class="rate-chg neg">▼ 0.03%</span></div>
+          <div style="padding: 0.8rem 1.5rem; font-size: 0.72rem; color: rgba(250,247,240,0.3);">
+            Rates shown are mid-market. A 0.8% spread applies on customer transactions.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BLOCKCHAIN ════════════════════════════════════════════ -->
+<section id="blockchain">
+  <div class="section-inner">
+    <div class="blockchain-grid">
+      <div>
+        <span class="section-label reveal">Smart Contracts</span>
+        <h2 class="section-title reveal reveal-delay-1">Tamper-Proof by Design,<br>Audited for Trust</h2>
+        <p class="section-sub reveal reveal-delay-2">Three production Solidity contracts on Polygon PoS handle every payment, wallet, and settlement — open to inspection by anyone, controlled by no one.</p>
+
+        <div class="contracts-list reveal reveal-delay-3">
+          <div class="contract-item">
+            <div class="contract-icon">📜</div>
+            <div>
+              <div class="contract-name">EACSettlement.sol</div>
+              <div class="contract-desc">Core payment contract storing every transaction on-chain. Emits PaymentInitiated, PaymentConfirmed, and PaymentRejected events with full indexing.</div>
+            </div>
+          </div>
+          <div class="contract-item">
+            <div class="contract-icon">🏭</div>
+            <div>
+              <div class="contract-name">EACWalletFactory.sol</div>
+              <div class="contract-desc">Deploys an ERC-1167 minimal proxy (clone) wallet for each registered customer. Maintains an owner-to-wallet registry on-chain.</div>
+            </div>
+          </div>
+          <div class="contract-item">
+            <div class="contract-icon">💎</div>
+            <div>
+              <div class="contract-name">EACToken.sol (EAC-USD)</div>
+              <div class="contract-desc">Optional regional stablecoin (6 decimals) used as the settlement intermediary. Mintable only by a Treasury multisig. Pausable for emergency governance.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div class="block-chain-visual">
+          <div class="block-item">
+            <div class="block-hash">#0x3f2a…9c1b · Block 104,825</div>
+            <div class="block-info">
+              <span class="block-tx">KES 50,000 → TZS (CRDB)</span>
+              <span class="block-status bs-confirmed">✓ Confirmed</span>
+            </div>
+            <div class="block-meta">2s ago · Polygon · Fee: 0.002 MATIC</div>
+          </div>
+          <div style="height: 1.5rem;"></div>
+          <div class="block-item">
+            <div class="block-hash">#0x8d1c…4f7e · Block 104,824</div>
+            <div class="block-info">
+              <span class="block-tx">UGX 1,200,000 → RWF (BOK)</span>
+              <span class="block-status bs-confirmed">✓ Confirmed</span>
+            </div>
+            <div class="block-meta">47s ago · Polygon · Fee: 0.002 MATIC</div>
+          </div>
+          <div style="height: 1.5rem;"></div>
+          <div class="block-item">
+            <div class="block-hash">#0x1b9f…2a3c · Block 104,823</div>
+            <div class="block-info">
+              <span class="block-tx">RWF 200,000 → KES (Equity)</span>
+              <span class="block-status bs-pending">⏳ Pending</span>
+            </div>
+            <div class="block-meta">2m ago · Polygon · Fee: 0.002 MATIC</div>
+          </div>
+          <div style="height: 1.5rem;"></div>
+          <div class="block-item">
+            <div class="block-hash">#0x6a4b…8e5d · Block 104,822</div>
+            <div class="block-info">
+              <span class="block-tx">TZS 3,500,000 → BIF (NMB)</span>
+              <span class="block-status bs-confirmed">✓ Confirmed</span>
+            </div>
+            <div class="block-meta">5m ago · Polygon · Fee: 0.002 MATIC</div>
+          </div>
+          <div style="margin-top: 1.2rem; padding: 1rem 1.2rem; background: rgba(212,160,23,0.1); border: 1px solid rgba(212,160,23,0.25); border-radius: 8px; font-size: 0.78rem; color: rgba(250,247,240,0.6);">
+            🔍 All blocks publicly verifiable on <span style="color: var(--gold);">Polygonscan</span> · Chain integrity checked every 5 min
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PARTNER BANKS ════════════════════════════════════════ -->
+<section id="banks">
+  <div class="section-inner">
+    <div class="banks-header">
+      <span class="section-label reveal">Network</span>
+      <h2 class="section-title reveal reveal-delay-1">10 Pre-Integrated EAC<br>Correspondent Banks</h2>
+      <p class="section-sub reveal reveal-delay-2" style="margin: 0 auto;">Real EAC banking infrastructure, seeded and ready. Connect your account to any partner bank and start sending immediately.</p>
+    </div>
+    <div class="banks-grid">
+      <div class="bank-card reveal">
+        <div class="bank-logo-area" style="background: linear-gradient(135deg,#c0392b,#e74c3c);">EQ</div>
+        <div class="bank-name">Equity Bank</div>
+        <div class="bank-country">🇰🇪 Kenya</div>
+        <div class="swift">EQBLKENA</div>
+      </div>
+      <div class="bank-card reveal reveal-delay-1">
+        <div class="bank-logo-area" style="background: linear-gradient(135deg,#1a5276,#2980b9);">KCB</div>
+        <div class="bank-name">KCB Group</div>
+        <div class="bank-country">🇰🇪 Kenya</div>
+        <div class="swift">KCBLKENX</div>
+      </div>
+      <div class="bank-card reveal reveal-delay-2">
+        <div class="bank-logo-area" style="background: linear-gradient(135deg,#117a65,#1abc9c);">CO</div>
+        <div class="bank-name">Co-operative Bank</div>
+        <div class="bank-country">🇰🇪 Kenya</div>
+        <div class="swift">COOPKENA</div>
+      </div>
+      <div class="bank-card reveal">
+        <div class="bank-logo-area" style="background: linear-gradient(135deg,#6c3483,#9b59b6);">CR</div>
+        <div class="bank-name">CRDB Bank</div>
+        <div class="bank-country">🇹🇿 Tanzania</div>
+        <div class="swift">CORUTZTZ</div>
+      </div>
+      <div class="bank-card reveal reveal-delay-1">
+        <div class="bank-logo-area" style="background: linear-gradient(135deg,#1b4f72,#2471a3);">NM</div>
+        <div class="bank-name">NMB Bank</div>
+        <div class="bank-country">🇹🇿 Tanzania</div>
+        <div class="swift">NMIBTZTZ</div>
+      </div>
+      <div class="bank-card reveal">
+        <div class="bank-logo-area" style="background: linear-gradient(135deg,#784212,#ca6f1e);">SB</div>
+        <div class="bank-name">Stanbic Uganda</div>
+        <div class="bank-country">🇺🇬 Uganda</div>
+        <div class="swift">SBICUGKA</div>
+      </div>
+      <div class="bank-card reveal reveal-delay-1">
+        <div class="bank-logo-area" style="background: linear-gradient(135deg,#1d6a46,#27ae60);">CB</div>
+        <div class="bank-name">Centenary Bank</div>
+        <div class="bank-country">🇺🇬 Uganda</div>
+        <div class="swift">CDOUUGKA</div>
+      </div>
+      <div class="bank-card reveal reveal-delay-2">
+        <div class="bank-logo-area" style="background: linear-gradient(135deg,#7b241c,#c0392b);">BK</div>
+        <div class="bank-name">Bank of Kigali</div>
+        <div class="bank-country">🇷🇼 Rwanda</div>
+        <div class="swift">BKIGRWRW</div>
+      </div>
+      <div class="bank-card reveal">
+        <div class="bank-logo-area" style="background: linear-gradient(135deg,#212f3c,#5d6d7e);">IM</div>
+        <div class="bank-name">I&amp;M Bank</div>
+        <div class="bank-country">🇰🇪 Kenya</div>
+        <div class="swift">IMBLKENX</div>
+      </div>
+      <div class="bank-card reveal reveal-delay-1">
+        <div class="bank-logo-area" style="background: linear-gradient(135deg,#1a237e,#3949ab);">DT</div>
+        <div class="bank-name">Diamond Trust Bank</div>
+        <div class="bank-country">🇰🇪 Kenya</div>
+        <div class="swift">DTKEKENX</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECURITY ══════════════════════════════════════════════ -->
+<section id="security">
+  <div class="section-inner">
+    <div style="text-align: center; margin-bottom: 3.5rem;">
+      <span class="section-label reveal">Security & Compliance</span>
+      <h2 class="section-title reveal reveal-delay-1">Enterprise Security.<br>DeFi Transparency.</h2>
+      <p class="section-sub reveal reveal-delay-2" style="margin: 0 auto;">We never take shortcuts with your money. Every layer — from browser to blockchain — is hardened against attack.</p>
+    </div>
+    <div class="security-grid">
+      <div class="sec-card reveal">
+        <div class="sec-icon">🔑</div>
+        <div class="sec-title">Client-Side Key Generation</div>
+        <div class="sec-desc">BIP-39 mnemonics generated in-browser. Private keys derived via PBKDF2 (310,000 iterations) and encrypted with AES-256-GCM. Your keys never touch our servers.</div>
+      </div>
+      <div class="sec-card reveal reveal-delay-1">
+        <div class="sec-icon">🛡️</div>
+        <div class="sec-title">OWASP Top-10 Hardened</div>
+        <div class="sec-desc">Helmet.js headers, Redis-backed rate limiting (20 req/min on auth), AJV input validation, CORS allowlisting, and append-only audit logging for all write operations.</div>
+      </div>
+      <div class="sec-card reveal reveal-delay-2">
+        <div class="sec-icon">🔍</div>
+        <div class="sec-title">Smart Contract Audit</div>
+        <div class="sec-desc">All Solidity contracts analysed with Slither and Mythril. Zero high/critical findings required before mainnet deploy. 100% branch coverage on settlement logic.</div>
+      </div>
+      <div class="sec-card reveal">
+        <div class="sec-icon">🏛️</div>
+        <div class="sec-title">HSM-Backed Relayer</div>
+        <div class="sec-desc">Bank relayer keys secured in AWS KMS or HashiCorp Vault — never in a plain .env file on production. Secrets injected at runtime via Secrets Manager.</div>
+      </div>
+      <div class="sec-card reveal reveal-delay-1">
+        <div class="sec-icon">✍️</div>
+        <div class="sec-title">EIP-712 Typed Signing</div>
+        <div class="sec-desc">Every transaction requires a structured data signature from the sender's wallet. The relayer verifies the signer address before broadcasting — no impersonation possible.</div>
+      </div>
+      <div class="sec-card reveal reveal-delay-2">
+        <div class="sec-icon">🌐</div>
+        <div class="sec-title">WCAG 2.1 AA Compliant</div>
+        <div class="sec-desc">Colour contrast, full keyboard navigation, and ARIA labels on every interactive element. Mobile-first, fully functional down to 375px viewports.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ═══════════════════════════════════════════════════ -->
+<section id="cta">
+  <div class="section-inner">
+    <div class="cta-inner">
+      <span class="section-label reveal" style="justify-content: center; display: block;">Ready to Get Started?</span>
+      <h2 class="cta-title reveal reveal-delay-1">Send Money Across<br>East Africa Today</h2>
+      <p class="cta-sub reveal reveal-delay-2">Join individuals and banks already using EACPay's blockchain payment rail. Register in minutes, connect your bank, and make your first cross-border transfer.</p>
+      <div class="cta-actions reveal reveal-delay-3">
+        <a href="#" class="btn-primary" style="background: var(--cream); color: var(--ink);">
+          Create Free Account →
+        </a>
+        <a href="#" class="btn-outline">
+          Register Your Bank
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">E</div>
+          <span class="logo-text">EAC<span>Pay</span></span>
+        </a>
+        <p>Blockchain-powered cross-border payments for the East African Community — connecting 8 nations on a single decentralised financial rail.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#blockchain">Blockchain</a></li>
+          <li><a href="#countries">Supported Countries</a></li>
+          <li><a href="#">API Docs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Banks</h4>
+        <ul>
+          <li><a href="#banks">Partner Banks</a></li>
+          <li><a href="#">Register Your Bank</a></li>
+          <li><a href="#">Correspondent Network</a></li>
+          <li><a href="#">FX Rate Feed</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About EACPay</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">Chain Explorer</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EACPay. Blockchain payments for the East African Community.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Regulatory</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Scroll-reveal ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── Nav scroll effect ──
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 60
+      ? 'rgba(13,31,23,0.97)'
+      : 'rgba(13,31,23,0.85)';
+  });
+
+  // ── Live rate jitter (purely cosmetic demo) ──
+  const rateEls = document.querySelectorAll('.rate-val');
+  const baseRates = [22.840, 28.310, 8.940, 19.720, 0.562, 184.50, 311.80, 1.240];
+  setInterval(() => {
+    rateEls.forEach((el, i) => {
+      const base = baseRates[i];
+      const jitter = (Math.random() - 0.5) * base * 0.001;
+      el.textContent = (base + jitter).toFixed(base < 2 ? 3 : 2);
+    });
+  }, 5000);
+
+  // ── Ticker rate shimmer ──
+  const tickerRates = document.querySelectorAll('.ticker-rate');
+  setInterval(() => {
+    tickerRates.forEach(el => {
+      const val = parseFloat(el.textContent);
+      const jitter = (Math.random() - 0.5) * val * 0.001;
+      el.textContent = (val + jitter).toFixed(val < 2 ? 3 : 2);
+    });
+  }, 8000);
+</script>
+</body>
+</html>
